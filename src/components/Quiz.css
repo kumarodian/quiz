@@ -6,16 +6,22 @@
     background: transparent;
     min-width: 65.92px;
     cursor: pointer;
+    margin: 5px 15px 15px 0
 }
 .answer--button:active{
     box-shadow: inset 2px 2px #5d5d5d;
     transform: scale(0.95);
 }
-.answer--option{
-    display: flex;
-    justify-content: space-around;
-}
 .question--box{
     border-bottom: 1px solid #DBDEF0;
-    padding: 15px 0;
+    padding: 0 0 15px 0;
+}
+.answer--selected{
+    background: #D6DBF5;
+}
+.correct--answer{
+    background: #94D7A2;
+}
+.wrong--answer{
+    background: #F8BCBC;
 }
