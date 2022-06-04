@@ -1,0 +1,21 @@
+.answer--button {
+    border: 0.794239px solid #4d5b9e;
+    border-radius: 7.94239px;
+    font-family: 'Karla';
+    padding: 8px 10px;
+    background: transparent;
+    min-width: 65.92px;
+    cursor: pointer;
+}
+.answer--button:active{
+    box-shadow: inset 2px 2px #5d5d5d;
+    transform: scale(0.95);
+}
+.answer--option{
+    display: flex;
+    justify-content: space-around;
+}
+.question--box{
+    border-bottom: 1px solid #DBDEF0;
+    padding: 15px 0;
+}
