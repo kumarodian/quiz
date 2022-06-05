@@ -7,7 +7,7 @@ export default function IntroScreen(props) {
 
       <div className="intro--text">
         <h2>Quizzical</h2>
-        <h4>Challenge your trivia</h4>
+        <h4>5 random trivial questions</h4>
         <button className="start--quiz" onClick={props.handleQuizStart}>
           Start Quiz
         </button>
