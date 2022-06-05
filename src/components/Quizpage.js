@@ -26,9 +26,8 @@ export default function Quizpage() {
       );
   }
   React.useEffect(() => {
-    console.log("effect");
     fetchQuiz();
-  }, [0]);
+  }, []);
   const elements = quizData.map((quiz) => (
     <Quiz key={quiz.id} {...quiz} handleClick={handleClick} result={result} />
   ));
