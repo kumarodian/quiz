@@ -1,6 +1,7 @@
 import React from "react";
 import Quiz from "./Quiz";
 import { nanoid } from "nanoid";
+import LoadingSpin from "react-loading-spin";
 import "./Quizpage.css";
 
 export default function Quizpage() {
@@ -59,6 +60,7 @@ export default function Quizpage() {
       setResult(true);
       setCorrectAnswer(correctAnswer);
     } else {
+      setQuizData([]);
       setResult(false);
       setCorrectAnswer(0);
       fetchQuiz();
@@ -67,6 +69,7 @@ export default function Quizpage() {
   //console.log(">>>" + JSON.stringify(quizData));
   return (
     <div style={{ zIndex: 1, textAlign: "left" }}>
+      {!quizData.length > 0 && <LoadingSpin primaryColor="#4D5B9E" />}
       {elements}
       <div className="check--answer">
         {result && (
