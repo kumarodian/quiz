@@ -4,7 +4,7 @@ import { nanoid } from "nanoid";
 import "./Quiz.css";
 export default function Quiz(props) {
   const {
-    incorrect_answers,
+    allOptions,
     correct_answer,
     question,
     selection,
@@ -12,25 +12,15 @@ export default function Quiz(props) {
     handleClick,
     id,
   } = props;
-  const allOptions = [...incorrect_answers, correct_answer];
-
-  /* function shuffleArray(arr) {
-    const newArr = [];
-    while (newArr.length < 4) {
-      const num = Math.floor(Math.random() * 4);
-      if (!newArr.indexOf(num)) newArr.push(num);
-    }
-    return newArr
-  } */
   const answerOptions = allOptions.map((ans) => (
     <button
       key={nanoid()}
       className={`answer--button ${
         result
-          ? selection === ans
-            ? selection === correct_answer
-              ? "correct--answer"
-              : "wrong--answer"
+          ? correct_answer === ans
+            ? "correct--answer"
+            : selection === ans
+            ? "wrong--answer"
             : ""
           : selection === ans
           ? "answer--selected"

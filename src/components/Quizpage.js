@@ -8,19 +8,27 @@ export default function Quizpage() {
   const [result, setResult] = React.useState(false);
   const [correctAnswer, setCorrectAnswer] = React.useState(0);
 
-function fetchQuiz(){
+  function fetchQuiz() {
     fetch("https://opentdb.com/api.php?amount=5&type=multiple")
-    .then((res) => res.json())
-    .then((quiz) =>
-      setQuizData(
-        quiz.results.map((item) => ({ ...item, id: nanoid(), selection: "" }))
-      )
-    );
-}
+      .then((res) => res.json())
+      .then((quiz) =>
+        setQuizData(
+          quiz.results.map((item) => ({
+            ...item,
+            allOptions: shuffleArray([
+              ...item.incorrect_answers,
+              item.correct_answer,
+            ]),
+            id: nanoid(),
+            selection: "",
+          }))
+        )
+      );
+  }
   React.useEffect(() => {
     console.log("effect");
-    fetchQuiz()
-  }, []);
+    fetchQuiz();
+  }, [0]);
   const elements = quizData.map((quiz) => (
     <Quiz key={quiz.id} {...quiz} handleClick={handleClick} result={result} />
   ));
@@ -33,6 +41,15 @@ function fetchQuiz(){
       )
     );
   }
+  function shuffleArray(arr) {
+    const num = Math.floor(Math.random() * 4);
+    if (num !== 3) {
+      const tmp = arr[num];
+      arr[num] = arr[3];
+      arr[3] = tmp;
+    }
+    return arr;
+  }
   function checkAnswer() {
     if (!result) {
       let correctAnswer = 0;
@@ -42,11 +59,10 @@ function fetchQuiz(){
       });
       setResult(true);
       setCorrectAnswer(correctAnswer);
-    }
-    else{
-        setResult(false);
-        setCorrectAnswer(0);
-        fetchQuiz();
+    } else {
+      setResult(false);
+      setCorrectAnswer(0);
+      fetchQuiz();
     }
   }
   //console.log(">>>" + JSON.stringify(quizData));
@@ -60,9 +76,11 @@ function fetchQuiz(){
           </span>
         )}
 
-        <button onClick={checkAnswer}>
-          {!result ? "Check answer" : "Play again"}
-        </button>
+        {quizData.length > 0 && (
+          <button onClick={checkAnswer}>
+            {!result ? "Check answer" : "Play again"}
+          </button>
+        )}
       </div>
     </div>
   );

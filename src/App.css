@@ -1,7 +1,9 @@
+body{
+  background: #022039;
+    height: 100vh;
+}
 #root {
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 100%;
-  background: #022039;
 }
